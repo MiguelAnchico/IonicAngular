@@ -12,9 +12,103 @@
       <ion-title size="large">Blank</ion-title>
     </ion-toolbar>
   </ion-header>
+  <!--
+  <ion-input value="Dato"></ion-input>
+  <ion-input placeholder="campo"></ion-input>
+  <ion-input clearInput value="clear"> </ion-input>
+  <ion-input type="number" value="123"></ion-input>
+  <ion-input value="disables" disabled></ion-input>
+  <ion-input value="Solo lectura" readonly></ion-input>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+  <ion-item>
+    <ion-label>Etiqueta</ion-label>
+    <ion-input></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Floating</ion-label>
+    <ion-input></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="fixed">Fixed</ion-label>
+    <ion-input type="text" placeholder="Awesome Input"></ion-input>
+  </ion-item>
+  -->
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>Usuario</ion-card-subtitle>
+      <ion-card-title>Bienvenido</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-item>
+        <ion-label position="floating">Nombre</ion-label>
+        <ion-input [(ngModel)]="Nombre"></ion-input>
+      </ion-item>
+    
+      <ion-list>
+        <ion-radio-group [(ngModel)]="Relacion">
+          <ion-list-header>
+            <ion-label>Relacion</ion-label>
+          </ion-list-header>
+          <ion-item>
+            <ion-label>Familia</ion-label>
+            <ion-radio color="success" value="familia"></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>Amigo</ion-label>
+            <ion-radio color="primary" value="amigo"></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>Enemigo</ion-label>
+            <ion-radio color="danger" value="enemigo" disabled></ion-radio>
+          </ion-item>
+        </ion-radio-group>
+      </ion-list>
+    
+      <ion-list>
+        <ion-list-header>
+          <ion-label>Select</ion-label>
+        </ion-list-header>
+        <ion-item>
+          <ion-label>Materias</ion-label>
+          <ion-select [(ngModel)]="Materias" multiple="true" cancelText="Cancelar" okText="Aceptar" placeholder="Seleccionar Materia">
+            <ion-select-option value="Español">Español</ion-select-option>
+            <ion-select-option value="Fisica">Fisica</ion-select-option>
+            <ion-select-option value="Quimica">Quimica</ion-select-option>
+            <ion-select-option value="Ciencias">Ciencias</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-list>
+    
+      <ion-button (click)="presentAlert()" expand="block" color="primary" expand="full" fill="clear" shape="round">
+        Enviar
+      </ion-button>
+    
+      <ion-label>{{Mensaje}}</ion-label>
+    </ion-card-content>
+  </ion-card>
+
+  <div *ngIf="mostrar; else elseblock">
+    <ion-card *ngFor="let item of items">
+      <ion-card-header>
+        <ion-card-subtitle>Profesion {{item.titulo}}</ion-card-subtitle>
+        <ion-card-title>{{item.descripcion}}</ion-card-title>
+      </ion-card-header>
+    </ion-card>
   </div>
+  <ng-template #elseblock>
+    <ion-card>
+      <ion-card-header>
+        <ion-card-subtitle>Profesiones</ion-card-subtitle>
+        <ion-card-title>¿Deseas ver las profesiones?</ion-card-title>
+      </ion-card-header>
+      <ion-button expand="block" color="primary" expand="full" fill="clear" shape="round" (click)="setMostrar()">
+        Mostrar profesiones
+      </ion-button>
+    </ion-card>
+  </ng-template>
+
 </ion-content>
